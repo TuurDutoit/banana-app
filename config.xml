@@ -4,7 +4,7 @@
     <description>
         Calorie counter using Watson Visual Recognition
     </description>
-    <content src="index.html" />
+    <content src="login.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
