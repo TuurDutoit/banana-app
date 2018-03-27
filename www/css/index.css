@@ -1,23 +1,5 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 body {
@@ -88,7 +70,7 @@ h1 {
 }
 
 .event.listening {
-    background-color:#333333;
+    background-color:#59CAF3;
     display:block;
 }
 
@@ -118,36 +100,39 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: Bariol;
     text-align: center;
+    background-color: #C2FFEE;
 }
-header {
+footer {
     overflow: hidden;
     position: fixed;
-    top: 0;
+    bottom: 0;
     width: 100%;
-    background-color: black;
+    background-color:#6AE5C3;
 }
-header img, header h1 {
+footer a{
     float: left;
-    display: block;
+    width: 33.33%;
 }
-header img#logo {
-    width: 28px;
-    height: 28px;
+footer .active {
+    background-color:#72CCB3;
+}
+footer img, footer h1,footer input {
+    margin: 0 auto;
+    display: inline-block;
+    width: auto;
+    height: 50px;
     margin: 8px;
 }
-header h1 {
+
+footer h1 {
     color: white;
     text-align: center;
     font-weight: bold;
     margin: 8px 0;
 }
 #captureImage {
-    width: 32px;
-    height: 32px;
-    margin: 4px 8px;
-    float: right;
     border: none;
     cursor: pointer;
 }
@@ -165,4 +150,8 @@ table {
     width: 100%;
     margin: 0 auto;
     border: none;
+}
+@font-face {
+     font-family: Bariol;
+     src:url(..//font/Bariol.ttf);
 }
