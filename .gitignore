@@ -5,3 +5,4 @@ bin/*
 plugins/*
 platforms/*
 .DS_Store
+node_modules/
