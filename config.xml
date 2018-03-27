@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="be.ucll.intweek.banana" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Banana</name>
+<widget id="com.watson.caloriecounter" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Calorie Counter</name>
     <description>
-        Banana age estimator
+        Calorie counter using Watson Visual Recognition
     </description>
     <content src="index.html" />
     <access origin="*" />
@@ -24,6 +24,5 @@
     <preference name="android-targetSdkVersion" value="23" />
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
-    <plugin name="cordova-plugin-console" spec="^1.1.0" />
-    <engine name="android" spec="^7.1.0" />
+    <engine name="android" spec="^7.0.0" />
 </widget>
