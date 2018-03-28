@@ -203,3 +203,11 @@ table {
 .item-cals-sub {
     margin-left: 5px;
 }
+
+.frame {
+    width: calc(100vw - 80px);
+    height: calc(100vw - 80px);
+    margin: 40px;
+    background-position: center;
+    background-size: cover;
+}
