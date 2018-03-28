@@ -21,9 +21,10 @@ function CreateUser(){
 
                     for(var a=0;a<logins.length;a++){
                         if(data.docs[logins[a]].username === username){
-                            alert("Please take another username");
-                            a=logins.length;  
+                            localStorage.setItem("username", username);
+                            window.location.replace("calorie-counter.html");
                             check=false;
+                            a=logins.length;
                         }
                     }
                     if(check){
