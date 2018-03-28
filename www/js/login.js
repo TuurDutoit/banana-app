@@ -10,7 +10,6 @@ CreateUser();
 
 function CreateUser(){
     if(!localStorage.getItem("username")){
-        alert(spam);
         username = document.getElementById("username").value;
         check=true;
         spam+=1;
