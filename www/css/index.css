@@ -1,5 +1,5 @@
 * {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: Bariol;
 }
 
 body {
@@ -97,6 +97,7 @@ h1 {
 }
 
 html, body {
+    font-family: Bariol;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -151,9 +152,61 @@ table {
     margin: 0 auto;
     border: none;
 }
-@font-face {
-     font-family: Bariol;
-     src:url(../font/Bariol.ttf);
+.login {
+    background-position: center; 
+    background-attachment: fixed;
+    background-image: url(../img/fruitrainbow.png)
+}
+.login .LoginSection{
+    width: 80%;
+    margin:0 auto;
+    padding: 70px 0;
+    color: #256554;
+}
+.login .LoginSection *{
+    color: #256554;
+}
+.login section{
+    width: 80%;
+    margin:0 auto;
+    display: inline-block;
+}
+.login .LoginSection label{
+    font-size: 2em;
+}
+.login .LoginSection section *{
+    text-align: left;
+    display: block;
+    margin-top:10vh;
+}
+
+.send{
+    vertical-align: middle;
+    text-align: center;
+    font-size: 15px;
+    background-color: #D7F6F2;
+    height: 30px;
+    outline: none;
+    color: #256554;
+    width: 80%;
+    height: 40px;
+    
+}
+.LoginSection input {
+    width: 80%;
+    border-radius: 5px;
+    border: 1px solid #B0B0B0;
+    margin-top: 50px;
+    text-indent: 5px;
+    font-size: 15px;
+    height: 40px;
+}
+.LoginSection section input{
+    width: 100%;
+}
+.LoginSection section input:nth-child(2) {
+    margin-top: 50px;
+    margin-bottom: 25px;
 }
 
 .calorie-count {
@@ -210,4 +263,9 @@ table {
     margin: 40px;
     background-position: center;
     background-size: cover;
+}
+
+@font-face {
+     font-family: Bariol;
+     src:url(..//font/Bariol.ttf);
 }
