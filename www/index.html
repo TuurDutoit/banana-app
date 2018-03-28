@@ -5,19 +5,20 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Calorie Counter</title>
     </head>
-    <body>
-        <p>Login</p>
-        <footer>
-            <a href="calorie-counter.html"><img src="img/Capture.png" alt="Calorie Counter logo"></a>
-            <a href="camera.html"><img src="img/Camera.png" alt="Camera logo"></a>
-            <a href="settings.html"><img src="img/Settings.png" alt="Settings logo"></a>
-        </footer>
-
+    <body class="login">
+       <div>
+        <section class="LoginSection" on="CreateUser()">
+          <section>
+              <label>Username:</label>
+              <input id="username" type="text" name="username" maxlength="50" placeholder="Username">
+          </section>
+          <input class="send" type="submit" value="Enjoy" onclick="CreateUser()">
+        </section>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/login.js"></script>
+       </div>
     </body>
 </html>
