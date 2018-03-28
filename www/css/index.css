@@ -167,14 +167,16 @@ table {
     color: #256554;
 }
 .login section{
-    width: 80%;
-    margin:0 auto;
     display: inline-block;
+}
+form,.login section{
+   width: 80%;
+   margin:0 auto;
 }
 .login .LoginSection label{
     font-size: 2em;
 }
-.login .LoginSection section *{
+.login .LoginSection form *{
     text-align: left;
     display: block;
     margin-top:10vh;
@@ -193,7 +195,6 @@ table {
     
 }
 .LoginSection input {
-    width: 80%;
     border-radius: 5px;
     border: 1px solid #B0B0B0;
     margin-top: 50px;
@@ -201,7 +202,7 @@ table {
     font-size: 15px;
     height: 40px;
 }
-.LoginSection section input{
+form input{
     width: 100%;
 }
 .LoginSection section input:nth-child(2) {
