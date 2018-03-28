@@ -1,23 +1,14 @@
 document.addEventListener('deviceready', function() {
 
-    var user = localStorage.getItem('user');
+    var username = localStorage.getItem('username');
 
-    if(!user) {
+    if(!username) {
         console.log('user not found in localStorage; using a demo user');
-        user = {
-            "weight": "0",
-            "username": "test",
-            "_id": "3f6f384894b57ecf18742661f30205ea",
-            "excercise": "5",
-            "height": "0",
-            "age": "0",
-            "sex": "yes",
-            "_rev": "3-1b10b527faf000dc4e91ade4bfe4bf34"
-        };
+        username = '';
         //window.location = 'login.html';
     }
     
-    var historyUrl = 'https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/read-document-history-sequence.json?username=' + encodeURIComponent(user.username);
+    var historyUrl = 'https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/read-document-history-sequence.json?username=' + encodeURIComponent(username);
     
     fetch(historyUrl)
         .then(res => res.json())

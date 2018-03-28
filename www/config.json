@@ -1,5 +1,6 @@
 {
-	"BLUEMIX_SERVER_URL": "<add-bluemix-server-url>",
+	"BLUEMIX_SERVER_URL": "https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/",
 	"NUTRITIONIX_APP_ID": "4eb223c0",
-	"NUTRITIONIX_APP_KEY": "32fcf90196fdeb5d34cccf146eae6f10"
+	"NUTRITIONIX_APP_KEY": "32fcf90196fdeb5d34cccf146eae6f10",
+	"NUTRITIONIX_API_URL": "https://www.nutritionix.com/track-api/v2/natural/nutrients"
 }
