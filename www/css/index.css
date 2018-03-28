@@ -153,5 +153,53 @@ table {
 }
 @font-face {
      font-family: Bariol;
-     src:url(..//font/Bariol.ttf);
+     src:url(../font/Bariol.ttf);
+}
+
+.calorie-count {
+    margin: 60px 0;
+}
+
+.calorie-count-num {
+    font-size: 6em;
+    display: inline;
+}
+
+.calorie-count-sub {
+    font-size: 2em;
+    margin-left: 10px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+}
+
+.item + .item {
+    border-top: 1px solid #383838;
+}
+
+.item-name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.item-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.item-cals {
+    margin-bottom: 5px;
+}
+
+.item-cals-num {
+    font-size: 1.5em;
+}
+
+.item-cals-sub {
+    margin-left: 5px;
 }
