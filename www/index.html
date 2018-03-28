@@ -10,11 +10,11 @@
     </head>
     <body class="login">
        <div>
-        <section class="LoginSection" on="CreateUser()">
-          <section>
+        <section class="LoginSection" onsubmit="CreateUser()">
+          <form onsubmit="CreateUser()" >
               <label>Username:</label>
               <input id="username" type="text" name="username" maxlength="50" placeholder="Username">
-          </section>
+          </form>
           <input class="send" type="submit" value="Enjoy" onclick="CreateUser()">
         </section>
         <script type="text/javascript" src="cordova.js"></script>
