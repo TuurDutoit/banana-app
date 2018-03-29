@@ -30,9 +30,11 @@ function CreateUser(){
                     if(check){
                         url = "https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/save-document-user-sequence.json?username=";
                         username = escapeHTML(username);
-                        //getJSON(url+escapeHTML(username));
-                        localStorage.setItem("username", username);
-                        window.location.replace("settings.html");
+                        getJSON(url+escapeHTML(username))
+                            .then(function() {
+                                localStorage.setItem("username", username);
+                                window.location.replace("settings.html");
+                            });
                     }
                 }
             });

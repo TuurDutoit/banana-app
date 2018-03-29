@@ -4,7 +4,10 @@ function getProfile(){
         weigth = document.getElementsByTagName("input")[1],
         age = document.getElementsByTagName("input")[2],
         gender = document.getElementsByTagName("select")[0],
-        activity = document.getElementById("range"),gender;
+        activity = document.getElementById("range"),
+        rev = document.querySelector("input[name=rev]"),
+        id = document.querySelector("input[name=id]"),
+        gender;
     
      getJSON('https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/read-document-user-sequence.json?username='+ username).then(function(data) {
                 if(data != null){
@@ -18,6 +21,8 @@ function getProfile(){
                         gender.value = "female";
                     }
                     activity.value = data.docs[0].excercise;
+                    rev.value = data.docs[0]._rev;
+                    id.value = data.docs[0]._id;
                 }
      });
     
@@ -31,12 +36,14 @@ function sendProfile(){
         weigth = document.getElementsByTagName("input")[1].value,
         age = document.getElementsByTagName("input")[2].value,
         gender = document.getElementsByTagName("select")[0].value,
-        activity = document.getElementById("range").value;
+        activity = document.getElementById("range").value,
+        rev = document.querySelector("input[name=rev]").value,
+        id = document.querySelector("input[name=id]").value;
     
         if(heigth != 0){
            if(weigth != 0){
                 if(age != 0){
-                    getJSON('https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/update-document-user-sequence.json?username='+ username + '&height='+ heigth+ '&weight='+ weigth+'&age='+ age+ '&sex='+ gender + '&excercise='+ activity)
+                    getJSON('https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/update-document-user-sequence.json?username='+ username + '&height='+ heigth+ '&weight='+ weigth+'&age='+ age+ '&sex='+ gender + '&excercise='+ activity + '&rev='+ rev + '&id='+ id)
                         .then(() => location = 'calorie-counter.html');
                 } else {
                     alert("Your age is missing");
