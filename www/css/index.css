@@ -212,7 +212,11 @@ table {
     border-radius: 5px;
     box-sizing: border-box;
 }
-.LoginSection input,.settings input:last-child {
+.send{
+     border-radius: 5px;
+    border: 1px solid #B0B0B0;
+}
+.LoginSection input,.settings input:last-child{
     border-radius: 5px;
     border: 1px solid #B0B0B0;
     margin-top: 50px;
