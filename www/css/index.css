@@ -413,6 +413,14 @@ input, select, .btn {
     -webkit-transition: .2s;
     transition: opacity .2s;
 }
+.procentage{
+    width: 100%;
+    color: white;
+    position: absolute;
+    text-align:center;
+    top: 35px;
+    left: 0;
+}
 @font-face {
      font-family: Bariol;
      src:url(../font/Bariol.ttf);
