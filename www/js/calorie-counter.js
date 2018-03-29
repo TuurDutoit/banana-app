@@ -18,18 +18,10 @@ document.addEventListener('deviceready', function() {
                 item.calories = +item.calories;
             });
             items.sort((a, b) => b.timestamp - a.timestamp);
-
-            var $main = document.querySelector('main');
-            
-            var pros = document.getElementById("pros");
-            console.log(items);
-        
-            pros.style.width="80%";
         
             // Total calorie count
-            var $header = document.createElement('header');
-            $header.className = 'calorie-count';
-            $main.appendChild($header);
+            var $header = document.querySelector('.calorie-count');
+            var $items = document.querySelector('.items');
 
             var $title = document.createElement('h1');
             $title.className = 'calorie-count-num';
@@ -42,10 +34,6 @@ document.addEventListener('deviceready', function() {
             $header.appendChild($titleSub);
 
             // Items list
-            var $items = document.createElement('ol');
-            $items.className = 'items';
-            $main.appendChild($items);
-
             items.forEach(item => {
                 var $item = document.createElement('li');
                 $item.className = 'item';
@@ -102,26 +90,27 @@ historyUrl = 'https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_de
                         }else{
                             var userInfo = data.docs[0],
                                 prosElement = document.getElementById("pros"),
-                                pros = Number(total)/Number(maxtotal),
                                 prosView = document.getElementsByClassName("procentage")[0];
-                                pros=1;
                             
                             if(data.docs[0].sex === "male"){ 
                                 maxtotal = 66 + (13.7 * userInfo.weight) + (5 * userInfo.height) - (6.8 * userInfo.age);
                             }else{
                                 maxtotal = 655 + (9.6 * userInfo.weight) + (1.8 * luserInfo.height) - (4.7 * userInfo.age);
                             }
-                                if(pros < 99.99){
-                                    prosElement.style.width = pros+"%";
-                                    prosView.innerHTML= pros+'%';
-                                }else{
-                                    prosElement.style.width = "100%";
-                                }
+
+                            var pros = Math.round((Number(total) / Number(maxtotal)) * 100);
+
+                            if(pros < 99.99){
+                                prosElement.style.width = pros+"%";
                                 prosView.innerHTML= pros+'%';
+                            }else{
+                                prosElement.style.width = "100%";
+                            }
+                            prosView.innerHTML= pros+'%';
                             
                         }
                     }
-            });
+            })
 
         .catch(console.error);
         });
