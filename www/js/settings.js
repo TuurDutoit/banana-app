@@ -32,7 +32,6 @@ function sendProfile(){
         age = document.getElementsByTagName("input")[2].value,
         gender = document.getElementsByTagName("select")[0].value,
         activity = document.getElementById("range").value;
-        console.log(weigth);
     
         if(heigth != 0){
            if(weigth != 0){
