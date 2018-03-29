@@ -192,9 +192,14 @@ form,.login section{
     color: #256554;
     width: 80%;
     height: 40px;
+    border-radius: 5px;
     
 }
-.LoginSection input,.settings input:last-child {
+.send{
+     border-radius: 5px;
+    border: 1px solid #B0B0B0;
+}
+.LoginSection input,.settings input:last-child{
     border-radius: 5px;
     border: 1px solid #B0B0B0;
     margin-top: 50px;
