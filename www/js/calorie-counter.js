@@ -1,7 +1,7 @@
 document.addEventListener('deviceready', function() {
 
     var username = localStorage.getItem('username');
-
+    
     if(!username) {
         console.log('user not found in localStorage; using a demo user');
         username = '';
@@ -9,20 +9,23 @@ document.addEventListener('deviceready', function() {
     }
     
     var historyUrl = 'https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/read-document-history-sequence.json?username=' + encodeURIComponent(username);
-    
     fetch(historyUrl)
         .then(res => res.json())
         .then(data => data.error ? Promise.reject(data.error) : data.doc)
         .then(items => {
             items.forEach(item => {
-                // This weird construct is required to convert to the local timezone
                 item.timestamp = new Date(new Date(item.timestamp));
                 item.calories = +item.calories;
             });
             items.sort((a, b) => b.timestamp - a.timestamp);
 
             var $main = document.querySelector('main');
-
+            
+            var pros = document.getElementById("pros");
+            console.log(items);
+        
+            pros.style.width="80%";
+        
             // Total calorie count
             var $header = document.createElement('header');
             $header.className = 'calorie-count';
@@ -48,19 +51,10 @@ document.addEventListener('deviceready', function() {
                 $item.className = 'item';
                 $items.appendChild($item);
 
-                var $itemLeft = document.createElement('div');
-                $itemLeft.className = 'item-left';
-                $item.appendChild($itemLeft);
-
                 var $name = document.createElement('span');
-                $name.className = 'item-name';
+                $name.className = 'item-name item-left';
                 $name.textContent = item.name;
-                $itemLeft.appendChild($name);
-
-                var $serving = document.createElement('span');
-                $serving.className = 'item-serving';
-                $serving.textContent = item.serving;
-                $itemLeft.appendChild($serving);
+                $item.appendChild($name);
 
                 var $itemRight = document.createElement('div');
                 $itemRight.className = 'item-right';
@@ -86,6 +80,67 @@ document.addEventListener('deviceready', function() {
                 $itemRight.appendChild($time);
             });
         })
-        .catch(console.error);
+    var username = localStorage.getItem('username'),
+historyUrl = 'https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/read-document-history-sequence.json?username=' + encodeURIComponent(username),
+    total,maxtotal;
 
+    fetch(historyUrl)
+        .then(res => res.json())
+        .then(data => data.error ? Promise.reject(data.error) : data.doc)
+        .then(items => {
+                    items.forEach(item => {
+                        item.timestamp = new Date(new Date(item.timestamp));
+                        item.calories = +item.calories;
+                    });
+        
+            total = items.reduce((total, item) => total + item.calories, 0);
+        
+            getJSON('https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/read-document-user-sequence.json?username='+ username).then(function(data) {
+                    if(data != null){
+                        if (data.docs.length === 0) {
+                            console.log(data);
+                        }else{
+                            var userInfo = data.docs[0],
+                                prosElement = document.getElementById("pros"),
+                                pros = Number(total)/Number(maxtotal),
+                                prosView = document.getElementsByClassName("procentage")[0];
+                                pros=1;
+                            
+                            if(data.docs[0].sex === "male"){ 
+                                maxtotal = 66 + (13.7 * userInfo.weight) + (5 * userInfo.height) - (6.8 * userInfo.age);
+                            }else{
+                                maxtotal = 655 + (9.6 * userInfo.weight) + (1.8 * luserInfo.height) - (4.7 * userInfo.age);
+                            }
+                                if(pros < 99.99){
+                                    prosElement.style.width = pros+"%";
+                                    prosView.innerHTML= pros+'%';
+                                }else{
+                                    prosElement.style.width = "100%";
+                                }
+                                prosView.innerHTML= pros+'%';
+                            
+                        }
+                    }
+            });
+
+        .catch(console.error);
+        });
+    
 }, false);
+
+function getJSON(url){
+  return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status == 200) {
+        resolve(xhr.response);
+      } else {
+        reject(status);
+      }
+    };
+    xhr.send();
+  });
+}
