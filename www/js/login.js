@@ -9,6 +9,8 @@ window.setInterval(
 CreateUser();
 
 function CreateUser(){
+    event.preventDefault();
+    
     if(!localStorage.getItem("username")){
         username = document.getElementById("username").value;
         check=true;
@@ -16,7 +18,7 @@ function CreateUser(){
         //empty
         if((username.length !== 0 || username.trim()) && spam <= 2){
             getJSON('https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/read-document-user-sequence.json').then(function(data) {
-                if(data != null){
+                if(data != null && data.docs.length !== 0){
                     logins = Object.keys(data.docs);
 
                     for(var a=0;a<logins.length;a++){
@@ -30,11 +32,9 @@ function CreateUser(){
                     if(check){
                         url = "https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/save-document-user-sequence.json?username=";
                         username = escapeHTML(username);
-                        getJSON(url+escapeHTML(username))
-                            .then(function() {
-                                localStorage.setItem("username", username);
-                                window.location.replace("settings.html");
-                            });
+                        getJSON(url+escapeHTML(username));
+                        localStorage.setItem("username", username);
+                        window.location.replace("settings.html");
                     }
                 }
             });
@@ -44,7 +44,7 @@ function CreateUser(){
     }
 }
 
-var getJSON = function(url) {
+function getJSON(url) {
   return new Promise(function(resolve, reject) {
     var xhr = new XMLHttpRequest();
     xhr.open('get', url, true);
