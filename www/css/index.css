@@ -421,6 +421,16 @@ input, select, .btn {
     top: 35px;
     left: 0;
 }
+.TotalStatus,#pros{
+    border-radius: 5px;
+}
+.TotalStatus{
+    width: 80%;
+    margin: 20px auto 0 auto;
+    height: 50px;
+    background-color: #72CCB3;
+    display: block;
+}
 @font-face {
      font-family: Bariol;
      src:url(../font/Bariol.ttf);
