@@ -9,8 +9,8 @@
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Calorie Counter</title>
     </head>
-    <body class="settings" onload="getProfile()">
-        <form onsubmit="sendProfile()">
+    <body onload="getProfile()">
+        <form onsubmit="sendProfile()" class="main settings">
             <label>Heigth (cm)</label>
             <input type="number" name="heigth" min="0" value="0" step="1">
             <label>Weigth (kg)</label>
@@ -25,7 +25,7 @@
             <label>Activity (1-5)</label>
             <input type="range" min="1" max="5" value="1" class="slider" id="range">
             
-            <input type="submit" value="Save" onclick="sendProfile()">
+            <input type="submit" value="Save" class="btn" onclick="sendProfile()">
         </form>
         <footer>
             <a href="calorie-counter.html"><img src="img/Capture.png" alt="Calorie Counter logo"></a>

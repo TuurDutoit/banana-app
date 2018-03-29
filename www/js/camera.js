@@ -159,6 +159,7 @@ document.addEventListener('deviceready', function() {
         $total.appendChild($totalUnit);
 
         var $submit = document.createElement('button');
+        $submit.className = 'btn food-btn';
         $submit.textContent = 'Save';
         $bottom.appendChild($submit);
 
