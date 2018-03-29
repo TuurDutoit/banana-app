@@ -9,7 +9,6 @@ window.setInterval(
 CreateUser();
 
 function CreateUser(){
-    event.preventDefault();
     
     if(!localStorage.getItem("username")){
         username = document.getElementById("username").value;
