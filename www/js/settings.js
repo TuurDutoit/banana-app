@@ -32,14 +32,11 @@ function sendProfile(){
         age = document.getElementsByTagName("input")[2].value,
         gender = document.getElementsByTagName("select")[0].value,
         activity = document.getElementById("range").value;
-        console.log(weigth);
     
         if(heigth != 0){
            if(weigth != 0){
                 if(age != 0){
                     getJSON('https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/update-document-user-sequence.json?username='+ username + '&height='+ heigth+ '&weight='+ weigth+'&age='+ age+ '&sex='+ gender + '&excercise='+ activity);
-                    
-                    getProfile();
                 } else {
                     alert("Your age is missing");
                 }
