@@ -201,7 +201,6 @@ document.addEventListener('deviceready', function() {
     }
 
     function getLabelsFromImage(url) {
-        return Promise.resolve({response: JSON.stringify({classes: ['Apple', 'Banana']})});
         return new Promise((resolve, reject) => {
             var options = new FileUploadOptions();
             options.fileKey = 'myPhoto';
