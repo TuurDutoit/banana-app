@@ -37,9 +37,8 @@ function sendProfile(){
         if(heigth != 0){
            if(weigth != 0){
                 if(age != 0){
-                    getJSON('https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/update-document-user-sequence.json?username='+ username + '&height='+ heigth+ '&weight='+ weigth+'&age='+ age+ '&sex='+ gender + '&excercise='+ activity);
-                    
-                    getProfile();
+                    getJSON('https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/update-document-user-sequence.json?username='+ username + '&height='+ heigth+ '&weight='+ weigth+'&age='+ age+ '&sex='+ gender + '&excercise='+ activity)
+                        .then(() => location = 'calorie-counter.html');
                 } else {
                     alert("Your age is missing");
                 }

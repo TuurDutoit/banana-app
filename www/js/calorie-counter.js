@@ -48,10 +48,19 @@ document.addEventListener('deviceready', function() {
                 $item.className = 'item';
                 $items.appendChild($item);
 
+                var $itemLeft = document.createElement('div');
+                $itemLeft.className = 'item-left';
+                $item.appendChild($itemLeft);
+
                 var $name = document.createElement('span');
-                $name.className = 'item-name item-left';
+                $name.className = 'item-name';
                 $name.textContent = item.name;
-                $item.appendChild($name);
+                $itemLeft.appendChild($name);
+
+                var $serving = document.createElement('span');
+                $serving.className = 'item-serving';
+                $serving.textContent = item.serving;
+                $itemLeft.appendChild($serving);
 
                 var $itemRight = document.createElement('div');
                 $itemRight.className = 'item-right';

@@ -1,6 +1,6 @@
 var NUTRITIONIX_API_URL = 'https://www.nutritionix.com/track-api/v2/natural/nutrients';
-var WATSON_API_URL = '';
-var DB_API_URL = '';
+var HISTORY_API_URL = 'https://openwhisk.eu-gb.bluemix.net/api/v1/web/1062096%40ucn.dk_dev/default/save-document-history-sequence.json';
+var WATSON_API_URL = 'https://banana-server.eu-gb.mybluemix.net/uploadpic';
 
 
 document.addEventListener('deviceready', function() {
@@ -8,8 +8,10 @@ document.addEventListener('deviceready', function() {
     navigator.camera.getPicture(cameraSuccess, cameraFail);
 
     function cameraFail(message) {
-        alert('Something went wrong when trying to take a picture.');
         console.error('Camera: capture failed: ' + message);
+        if(message !== 'No Image Selected') {
+            alert('Something went wrong when trying to take a picture.');
+        }
     }
 
     function cameraSuccess(url) {
@@ -21,9 +23,17 @@ document.addEventListener('deviceready', function() {
         $main.appendChild($img);
 
         getLabelsFromImage(url)
-            .then(labels => fetch(NUTRITIONIX_API_URL, nutritionixOptionsForLabels(labels)))
-            .then(res => res.json())
-            .then(createUIForFoods)
+            .then(res => JSON.parse(res.response))
+            .then(data => {
+                if(data.classes.length === 0 || data.classes[0] === 'non-food') {
+                    createUIForFoods();
+                }
+                else {
+                    return fetch(NUTRITIONIX_API_URL, nutritionixOptionsForLabels(data.classes))
+                        .then(res => res.json())
+                        .then(createUIForFoods)
+                }
+            })
             .catch(e => {
                 console.error(e);
                 alert('An occurred when processing image');
@@ -46,8 +56,17 @@ document.addEventListener('deviceready', function() {
     }
 
     function createUIForFoods(data) {
-        var foods = data.foods;
         var $main = document.querySelector('main');
+
+        if(data == null) {
+            var $nonFood = document.createElement('p');
+            $nonFood.className = 'non-food';
+            $nonFood.textContent = 'Watson didn\'t recognize any food in this picture.';
+            $main.appendChild($nonFood);
+            return;
+        }
+
+        var foods = data.foods;
 
         // Create the form for amount / unit input
         var $wrapper = document.createElement('form');
@@ -68,10 +87,20 @@ document.addEventListener('deviceready', function() {
             $food.className = 'food';
             $foods.appendChild($food);
 
+            var $foodTop = document.createElement('div');
+            $foodTop.className = 'food-top';
+            $food.appendChild($foodTop);
+
             var $name = document.createElement('h2');
             $name.className = 'food-name';
             $name.textContent = food.food_name;
-            $food.appendChild($name);
+            $foodTop.appendChild($name);
+
+            var $del = document.createElement('span')
+            $del.className = 'food-del';
+            $del.textContent = 'x';
+            $del.addEventListener('click', () => { $foods.removeChild($food); updateCals(); });
+            $foodTop.appendChild($del);
 
             // Input[type=number] for ampount and select for serving size
             var $formula = document.createElement('div');
@@ -172,7 +201,17 @@ document.addEventListener('deviceready', function() {
     }
 
     function getLabelsFromImage(url) {
-        return Promise.resolve(['Apple', 'Banana']);
+        return Promise.resolve({response: JSON.stringify({classes: ['Apple', 'Banana']})});
+        return new Promise((resolve, reject) => {
+            var options = new FileUploadOptions();
+            options.fileKey = 'myPhoto';
+            options.fileName = url.substr(url.lastIndexOf('/') + 1);
+            options.mimeType = 'image/jpeg';
+            options.chunkedMode = false;
+    
+            var ft = new FileTransfer();
+            ft.upload(url, encodeURI(WATSON_API_URL), resolve, reject, options);
+        });
     }
 
     function onSubmitItems(e) {
@@ -182,7 +221,7 @@ document.addEventListener('deviceready', function() {
         var $items = $wrapper.querySelectorAll('.food');
         var items = Array.from($items).map(($item, i) => {
             var measure = $item.querySelector('.food-measures').value;
-            var amount = +$item.querySelector('.food-amount').textContent;
+            var amount = +$item.querySelector('.food-amount').value;
             var name = $item.querySelector('.food-name').textContent;
             var serving =  amount + ' ' + measure;
             var calories = +$item.querySelector('.food-cals-num').textContent;
@@ -191,12 +230,23 @@ document.addEventListener('deviceready', function() {
         });
 
         saveItems(items)
-            .then(() => window.location = 'calorie-counter.html');
+            .then(() => window.location = 'calorie-counter.html')
+            .catch(e => {
+                console.error(e);
+                alert('Something went wrong when saving your meal.');
+            });
     }
 
     function saveItems(items) {
-        console.log(items);
-        return Promise.resolve();
+        return Promise.all(items.map(item => {
+            return fetch(HISTORY_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item)
+            });
+        }));
     }
 
 }, false);

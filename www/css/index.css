@@ -105,7 +105,8 @@ html, body {
     background-color: #C2FFEE;
 }
 
-body {
+body,
+.camera-container {
     display: flex;
     flex-direction: column;
 }
@@ -212,10 +213,11 @@ table {
     border-radius: 5px;
     box-sizing: border-box;
 }
-.send{
-     border-radius: 5px;
-    border: 1px solid #B0B0B0;
+
+input, select, .btn {
+    flex-shrink: 0;
 }
+
 .LoginSection input,.settings input:last-child{
     border-radius: 5px;
     border: 1px solid #B0B0B0;
@@ -260,13 +262,18 @@ table {
     font-weight: bold;
 }
 
-.item-right {
+.item-right,
+.item-left {
     display: flex;
     flex-direction: column;
+}
+
+.item-right {
     align-items: flex-end;
 }
 
-.item-cals {
+.item-cals,
+.item-name {
     margin-bottom: 5px;
 }
 
@@ -286,6 +293,15 @@ table {
     background-size: cover;
 }
 
+.camera-retry {
+    margin: 15px 40px 40px 40px;
+    width: auto;
+}
+
+.camera-main {
+    flex-grow: 1;
+}
+
 .foods-form {
     margin: 0 40px;
 }
@@ -294,10 +310,20 @@ table {
     padding: 15px 0;
 }
 
+.food-top {
+    display: flex;
+    justify-content: space-between;
+}
+
 .food-name {
     font-weight: bold;
     font-size: 1.5em;
     text-align: left;
+}
+
+.food-del {
+    font-weight: bold;
+    font-size: 1.5em;
 }
 
 .food-formula {
@@ -328,7 +354,11 @@ table {
 }
 
 .food-btn {
-    margin: 15px 0 45px;
+    margin: 15px 0 0;
+}
+
+.non-food {
+    text-align: center;
 }
 
 .settings{
